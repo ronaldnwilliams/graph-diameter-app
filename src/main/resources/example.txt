@@ -1,0 +1,11 @@
+A – B
+B – C
+B – D
+D – E
+E – A2
+A2B4
+B4C2
+B4D1
+D1E2
+E2F2
+F2G3
