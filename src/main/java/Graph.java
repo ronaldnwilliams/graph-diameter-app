@@ -1,19 +1,21 @@
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.stream.Stream;
 
 public class Graph {
     // stores vertex as key and hashset of neighboring verticies as value
-    private HashMap<String, HashSet<String>> symbolTable;
+    private Map<String, Set<String>> symbolTable;
     // number of edges
     private int E;
 
     // initializes empty graph
     public Graph() {
-        symbolTable = new HashMap<>();
+        symbolTable = new TreeMap<>();
     }
 
     /**
@@ -28,33 +30,31 @@ public class Graph {
      *  @param delimiter delimiter used for line matcher
      *  @param delimiterSplitter delimiter used for line split if using delimiter
      *  @param delimiter2 delimiter used if line does not match first delimiter
+     *  @exception throws IOException if problem with file or not found
      */
     public Graph(String fileName, String delimiter, String delimiterSplitter, 
-        String delimiter2) {
-            symbolTable = new HashMap<>();
+        String delimiter2) throws IOException {
+            symbolTable = new TreeMap<>();
             //read file into stream, try-with-resources
-            try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
-                // loop through each line
-                stream.forEach(line -> {
-                    // declare a variable that will hold which delimiter to use
-                    String conditionalLimiter;
-                    // check first delimiter
-                    if (line.matches(delimiter)) {
-                        conditionalLimiter = delimiterSplitter;
-                    // use delimiter2
-                    } else {
-                        conditionalLimiter = delimiter2;
-                    }
-                    // variable to hold the vertex names
-                    String[] names = line.split(conditionalLimiter);
-                    for (int i = 1; i < names.length; i++) {
-                        addEdge(names[0], names[i]);
-                    }
+            Stream<String> stream = Files.lines(Paths.get(fileName));
+            // loop through each line
+            stream.forEach(line -> {
+                // declare a variable that will hold which delimiter to use
+                String conditionalLimiter;
+                // check first delimiter
+                if (line.matches(delimiter)) {
+                    conditionalLimiter = delimiterSplitter;
+                // use delimiter2
+                } else {
+                    conditionalLimiter = delimiter2;
+                }
+                // variable to hold the vertex names
+                String[] names = line.split(conditionalLimiter);
+                for (int i = 1; i < names.length; i++) {
+                    addEdge(names[0], names[i]);
+                }
 
-                });
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            });
     }
 
     // returns the number of vertices
@@ -102,7 +102,7 @@ public class Graph {
      * @param v the vertex
      */
     private void addVertex(String v) {
-        if (!hasVertex(v)) symbolTable.put(v, new HashSet<String>());
+        if (!hasVertex(v)) symbolTable.put(v, new TreeSet<String>());
     }
 
     /** 
