@@ -1,5 +1,7 @@
-## Graph Diameter App
-This is a graph diameter app that I made for a code challenge. It calculates the diameter of an undirected graph.  
+## Graph Diameter App  
+![alt text](http://mathworld.wolfram.com/images/eps-gif/RandomGraphs_1000.gif)
+
+Java app that I made for a code challenge. It calculates the diameter of an undirected graph.  
 
 It takes a txt file in the following format:  
 A – B  
