@@ -34,3 +34,9 @@ or to run this app with your own txt file that follows the above formatting:
 ### Test  
 `gradle test`  
 `open build/reports/tests/test/index.html`  
+
+---
+### References  
+Introduction to Programming in Java: An Interdisciplinary Aproach (2nd Edition)  
+by Robert Sedgewick and Kevin Wayne  
+Chapter 4-Algorithms and Data Structures (4.5-Case Study: Small-World Phenomenon)  
